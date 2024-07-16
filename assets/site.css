@@ -2,12 +2,21 @@ html {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+body {
+    margin: 0;
+}
+
 main {
     margin: auto;
     max-width: 33.333%;
+    min-width: max-content;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+ol {
+    padding: 0;
 }
 
 li {
@@ -16,9 +25,18 @@ li {
 
 li a {
     padding: 0px 8px;
+    height: max-content;
+    align-self: center;
 }
 
-li a:first-child {
+li a:first-of-type {
     margin-left: auto;
+}
+
+li a:not(:last-child) {
     border-right: 1px solid black;
+}
+
+.done {
+    text-decoration: line-through;
 }

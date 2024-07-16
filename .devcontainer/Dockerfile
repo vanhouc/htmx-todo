@@ -6,7 +6,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
    && apt-get -y install clang lld \
    && apt-get autoremove -y && apt-get clean -y
 
-# Install cargo watch as the vscode user to prevent file permissions errors
+# Install cargo tools as the vscode user to prevent file permissions errors
 USER vscode
 
-RUN cargo install cargo-watch --locked
+RUN cargo install cargo-watch --locked && cargo install sqlx-cli
