@@ -28,13 +28,19 @@ async fn main() {
         .expect("database migrations must be applicable");
 
     // build application routes and middleware
-    let app = Router::new()
+    let mut router = Router::new()
         .nest("/todos", todo::router())
         .nest_service("/assets", ServeDir::new("assets"))
         .fallback(|| async { Redirect::permanent("/todos") })
-        .layer(AutoVaryLayer)
-        .layer(LiveReloadLayer::new())
-        .with_state(pool);
+        .layer(AutoVaryLayer);
+
+    // If in debug mode add live reloading
+    if cfg!(debug) {
+        router = router.layer(LiveReloadLayer::new())
+    }
+
+    // Add state to our router
+    let app = router.with_state(pool);
 
     // run our app with hyper, listening globally on port 3000
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
