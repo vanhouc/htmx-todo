@@ -1,0 +1,36 @@
+{% extends "_layout.html" %}
+
+{% block title %}Index{% endblock title%}
+
+{% block content %}
+<h1>Todo</h1>
+<form method="post" action="/todos" hx-target="ol">
+    <label for="todo">Add Todo: </label>
+    <input type="text" id="todo" name="todo">
+    <input type="submit" value="Add">
+</form>
+<ol hx-target="this">
+    {% block list %}
+    {% for todo in todos %}
+    <li>
+        {% if let Some(active) = active %}
+        {% if active|deref == loop.index0 %}
+        <form method="post" action="/todos/{{loop.index0}}">
+            <input type="text" name="todo" value="{{todo}}">
+            <input type="submit" value="Update">
+        </form>
+        {% else %}
+        {{loop.index}}. {{ todo }}
+        <a href="/todos/{{loop.index0}}">Edit</a>
+        <a href="/todos/{{loop.index0}}/delete" hx-delete="/todos/{{loop.index0}}">Delete</a>
+        {% endif%}
+        {% else %}
+        {{loop.index}}. {{ todo }}
+        <a href="/todos/{{loop.index0}}">Edit</a>
+        <a href="/todos/{{loop.index0}}/delete" hx-delete="/todos/{{loop.index0}}">Delete</a>
+        {% endif %}
+    </li>
+    {% endfor %}
+    {% endblock list%}
+</ol>
+{% endblock content %}

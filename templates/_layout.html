@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>{% block title %}{% endblock title %} - Axum + HTMX</title>
+    {% block head %} {% endblock head %}
+    <link href="/assets/site.css" rel="stylesheet" />
+    <script src="https://unpkg.com/htmx.org@2.0.1"
+        integrity="sha384-QWGpdj554B4ETpJJC9z+ZHJcA/i59TyjxEPXiiUgN2WmTyV5OEZWCD6gQhgkdpB/"
+        crossorigin="anonymous"></script>
+</head>
+
+<body hx-boost="true">
+    <main>
+        {% block content %}<p>Placeholder Content</p>{% endblock content %}
+    </main>
+</body>
+
+</html>

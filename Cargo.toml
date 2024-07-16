@@ -1,0 +1,18 @@
+[package]
+name = "htmx-todo"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+askama = { git = "https://github.com/djc/askama.git", features = ["with-axum"] }
+askama_axum = { git = "https://github.com/djc/askama.git" }
+axum = "0.7.5"
+axum-htmx = { version = "0.6.0", features = ["auto-vary", "guards"] }
+serde = { version = "1.0.204", features = ["serde_derive"] }
+sqlx = { version = "0.7.4", features = ["postgres", "runtime-tokio"] }
+thiserror = "1.0.62"
+tokio = { version = "1.38.0", features = ["macros", "rt-multi-thread"] }
+tower-http = { version = "0.5.2", features = ["fs", "tracing"] }
+tower-livereload = "0.9.3"
+tracing = "0.1.40"
+tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
