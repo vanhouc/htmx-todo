@@ -10,6 +10,9 @@ Axum is used as the HTTP server, it uses complex types to validate handlers rath
 ### SQLx
 SQLx is a library for querying multiple different database backends. Its standout feature is the ability to compile time verify SQL queries against a provided database. This project uses SQLx with a PostgreSQL database, it also takes advantage of the migration features of SQLx to alter the database tables.
 
+### Rinja (Formly Askama)
+Rinja is an HTML templating engine for Rust that can generate dynamic HTML documents based off of a Jinja2 derivative template file. Rinja is able to check templates and their context at compile time which helps make sure that all template render correctly without manual testing. Rinja also provides convenient features for being able to render fragments of templates which synergizes very well HTMX for rendering partial DOM updates.
+
 ### HTMX
 HTMX is used to turn this traditional Multiple Page Application(MPA) into an Single Page Application(SPA) with the use of special decorators applied to HTML elements. HTMX has the ability to trigger AJAX calls via any html element and swap response HTML into the DOM.
 
