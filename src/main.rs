@@ -59,7 +59,7 @@ enum Error {
     #[error(transparent)]
     Sql(#[from] sqlx::Error),
     #[error(transparent)]
-    Askama(#[from] askama::Error),
+    Rinja(#[from] rinja::Error),
 }
 
 impl IntoResponse for Error {

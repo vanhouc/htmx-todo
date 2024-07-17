@@ -4,8 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-askama = { git = "https://github.com/djc/askama.git", features = ["with-axum"] }
-askama_axum = { git = "https://github.com/djc/askama.git" }
+rinja = { version = "0.2.0", features = ["with-axum"] }
+rinja_axum = { version = "0.2.0" }
 axum = { version = "0.7.5", features = ["macros"] }
 axum-embed = "0.1.0"
 axum-htmx = { version = "0.6.0", features = ["auto-vary", "guards"] }
