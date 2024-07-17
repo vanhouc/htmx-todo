@@ -7,7 +7,9 @@ edition = "2021"
 askama = { git = "https://github.com/djc/askama.git", features = ["with-axum"] }
 askama_axum = { git = "https://github.com/djc/askama.git" }
 axum = { version = "0.7.5", features = ["macros"] }
+axum-embed = "0.1.0"
 axum-htmx = { version = "0.6.0", features = ["auto-vary", "guards"] }
+rust-embed = "8.5.0"
 serde = { version = "1.0.204", features = ["serde_derive"] }
 sqlx = { version = "0.7.4", features = ["postgres", "runtime-tokio"] }
 thiserror = "1.0.62"

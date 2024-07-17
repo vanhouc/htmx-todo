@@ -3,10 +3,11 @@ use axum::{
     response::{IntoResponse, Redirect},
     Router,
 };
+use axum_embed::ServeEmbed;
 use axum_htmx::AutoVaryLayer;
+use rust_embed::RustEmbed;
 use sqlx::PgPool;
 use thiserror::Error;
-use tower_http::services::ServeDir;
 use tower_livereload::LiveReloadLayer;
 
 mod todo;
@@ -30,7 +31,7 @@ async fn main() {
     // build application routes and middleware
     let mut router = Router::new()
         .nest("/todos", todo::router())
-        .nest_service("/assets", ServeDir::new("assets"))
+        .nest_service("/assets", ServeEmbed::<Assets>::new())
         .fallback(|| async { Redirect::permanent("/todos") })
         .layer(AutoVaryLayer);
 
@@ -43,11 +44,15 @@ async fn main() {
     let app = router.with_state(pool);
 
     // run our app with hyper, listening globally on port 3000
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
+    let listener = tokio::net::TcpListener::bind("0.0.0.0:8080").await.unwrap();
     axum::serve(listener, app).await.unwrap();
 }
 
 type SharedState = PgPool;
+
+#[derive(RustEmbed, Clone)]
+#[folder = "assets/"]
+struct Assets;
 
 #[derive(Error, Debug)]
 enum Error {
