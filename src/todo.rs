@@ -1,4 +1,3 @@
-use askama::Template;
 use axum::{
     extract::{Path, State},
     response::{IntoResponse, Redirect},
@@ -6,6 +5,7 @@ use axum::{
     Form, Router,
 };
 use axum_htmx::HxRequest;
+use rinja::Template;
 use serde::Deserialize;
 
 use crate::{Error, SharedState};

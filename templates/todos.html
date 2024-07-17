@@ -11,7 +11,7 @@
 </form>
 <ol hx-target="this">
     {% block list %}
-    {% for todo in todos|as_ref %}
+    {% for todo in todos|ref %}
     <li>
         {% if todo.edit %}
         <form method="post" action="/todos/{{todo.id}}">
