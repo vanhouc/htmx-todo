@@ -36,7 +36,7 @@ async fn main() {
         .layer(AutoVaryLayer);
 
     // If in debug mode add live reloading
-    if cfg!(debug) {
+    if cfg!(debug_assertions) {
         router = router.layer(LiveReloadLayer::new())
     }
 
